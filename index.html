@@ -402,13 +402,15 @@ pre {
 <div class="container">
     <div class="paper-title">
     <h1> 
-        PolyTask: Learning Unified Policies through Behavior Distillation
+        Teach a Robot to FISH: Versatile Imitation from One Minute of Demonstrations
     </div>
 
     <div id="authors">
         <center>
             <div class="author-row-new">
-                <a href="https://siddhanthaldar.github.io/">Siddhant Haldar</a>,
+                <a href="https://siddhanthaldar.github.io/">Siddhant Haldar*</a>,
+                <a href="https://jyopari.github.io/">Jyothish Pari*</a>,
+                <a href="https://raianant.github.io/">Anant Rai</a>,
                 <a href="https://www.lerrelpinto.com/">Lerrel Pinto</a>
             </div>
         </center>
@@ -418,19 +420,19 @@ pre {
             <span><sup>2</sup> MIT</span><br/>
         </div> -->
 
-        <!-- <br>* Equal contribution -->
+        <br>* Equal contribution
 
         <div class="affil-row">
             <div class="venue text-center"><b>New York University</b></div>
         </div>
 
-        <!-- <div class="affil-row">
+        <div class="affil-row">
             <div class="venue text-center">RSS 2023 <strong style="color: red">(Best Student Paper Award)</strong></div>
-        </div> -->
+        </div>
 
         </center>
 
-        <!-- <div style="clear: both">
+        <div style="clear: both">
             <div class="paper-btn-parent">
                 <a class="paper-btn" href="https://www.roboticsproceedings.org/rss19/p009.pdf">
                         <span class="material-icons"> description </span> 
@@ -447,7 +449,7 @@ pre {
                     Code
                 </a>
             </div>
-        </div> -->
+        </div>
     </div>
 
     <br>
@@ -492,24 +494,24 @@ pre {
         <h2>Abstract</h2>
         <div class="flex-row">
             <p>
-                Unified models capable of solving a wide variety of tasks have gained traction in vision and NLP due to
-                their ability to share regularities and structures across tasks, which improves individual task performance and reduces
-                computational footprint. However, the impact of such models remains limited in embodied learning problems, which present
-                unique challenges due to interactivity, sample inefficiency, and sequential task presentation. In this work, we present PolyTask,
-                a novel scheme for learning a single unified model that can solve various embodied tasks through a ‘learn then distill’ mechanism.
-                In the ‘learn’ step, PolyTask leverages a few demonstrations for each task to train task-specific policies. Then, in the ‘distill’
-                step, task-specific policies are distilled into a single policy using a new distillation method called Behavior Distillation. Given
-                a unified policy, individual task behavior can be extracted through conditioning variables. PolyTask is designed to be
-                conceptually simple while being able to leverage well-established algorithms in RL to enable interactivity, a handful of expert
-                demonstrations to allow for sample efficiency, and preventing interactive access to tasks during distillation to enable lifelong 
-                learning. Experiments across three simulated environment suites and a real-robot suite show that PolyTask outperforms prior 
-                state-of-the-art approaches in multi-task and lifelong learning settings by significant margins.
+                While imitation learning provides us with an efficient toolkit to train robots, learning skills that are robust to 
+                environment variations remains a significant challenge. Current approaches address this challenge by relying either
+                on large amounts of demonstrations that span environment variations or on handcrafted reward functions that require state estimates.
+                Both directions are not scalable to fast imitation. In this work, we present Fast Imitation of Skills from Humans (FISH), a
+                new imitation learning approach that can learn robust visual skills with less than a minute of human demonstrations. Given a
+                weak base-policy trained by offline imitation of demonstrations, FISH computes rewards that correspond to the “match” between
+                the robot’s behavior and the demonstrations. These rewards are then used to adaptively update a residual policy that adds
+                on to the base-policy. Across all tasks, FISH requires at most twenty minutes of interactive learning to imitate demonstrations
+                on object configurations that were not seen in the demonstrations. Importantly, FISH is constructed to be versatile, which allows it
+                to be used across robot morphologies (e.g. xArm, Allegro, Stretch) and camera configurations (e.g. third-person, eye-in-hand). Our
+                experimental evaluations on 9 different tasks show that FISH achieves an average success rate of 93%, which is around 3.8× higher 
+                than prior state-of-the-art methods.
             </p>
         </div>
     </section>
     <section id="method"/>
         <hr>
-        <h2>PolyTask</h2>
+        <h2>Fast Imitation of Skills from Humans (FISH)</h2>
 
             <br><br>
             <div class="mx-auto">
