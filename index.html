@@ -387,11 +387,11 @@ pre {
 <script type="text/javascript" src="../js/hidebib.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,600,400italic,600italic,300,300italic' rel='stylesheet' type='text/css'>
     <head>
-        <title> Teach a Robot to FISH: Versatile Imitation from One Minute of Demonstrations</title>
+        <title> PolyTask: Learning Unified Policies through Behavior Distillation</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta property="og:description" content="Teach a Robot to FISH: Versatile Imitation from One Minute of Demonstrations"/>
+        <meta property="og:description" content="PolyTask: Learning Unified Policies through Behavior Distillation"/>
         <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
-        <meta name="twitter:title" content="Teach a Robot to FISH: Versatile Imitation from One Minute of Demonstrations">
+        <meta name="twitter:title" content="PolyTask: Learning Unified Policies through Behavior Distillation">
         <meta name="twitter:description" content="">
         <meta name="twitter:image" content="">
     </head>
@@ -402,15 +402,13 @@ pre {
 <div class="container">
     <div class="paper-title">
     <h1> 
-        Teach a Robot to FISH: Versatile Imitation from One Minute of Demonstrations
+        PolyTask: Learning Unified Policies through Behavior Distillation
     </div>
 
     <div id="authors">
         <center>
             <div class="author-row-new">
-                <a href="https://siddhanthaldar.github.io/">Siddhant Haldar*</a>,
-                <a href="https://jyopari.github.io/">Jyothish Pari*</a>,
-                <a href="https://raianant.github.io/">Anant Rai</a>,
+                <a href="https://siddhanthaldar.github.io/">Siddhant Haldar</a>,
                 <a href="https://www.lerrelpinto.com/">Lerrel Pinto</a>
             </div>
         </center>
@@ -420,32 +418,35 @@ pre {
             <span><sup>2</sup> MIT</span><br/>
         </div> -->
 
-        <br>* Equal contribution
-
         <div class="affil-row">
             <div class="venue text-center"><b>New York University</b></div>
         </div>
 
-        <div class="affil-row">
+        <!-- <div class="affil-row">
             <div class="venue text-center">RSS 2023 <strong style="color: red">(Best Student Paper Award)</strong></div>
-        </div>
+        </div> -->
 
         </center>
 
         <div style="clear: both">
             <div class="paper-btn-parent">
+                <a class="paper-btn" href="./mfiles/ICRA_2024-PolyTask_details.pdf">
+                        <!-- <span class="material-icons"> code </span> -->
+                    Details
+                </a>
+            <!-- <div class="paper-btn-parent">
                 <a class="paper-btn" href="https://www.roboticsproceedings.org/rss19/p009.pdf">
                         <span class="material-icons"> description </span> 
                     Paper
-                </a>
-            <div class="paper-btn-parent">
+                </a> -->
+            <!-- <div class="paper-btn-parent">
                 <a class="paper-btn" href="https://arxiv.org/abs/2303.01497">
                         <span class="material-icons"> description </span> 
                     arXiv
-                </a>
+                </a> -->
             <div class="paper-btn-coming-soon">
-                <a class="paper-btn" href="https://github.com/siddhanthaldar/FISH">
-                        <span class="material-icons"> code </span>
+                <a class="paper-btn" href="">
+                        <!-- <span class="material-icons"> code </span> -->
                     Code
                 </a>
             </div>
@@ -494,29 +495,45 @@ pre {
         <h2>Abstract</h2>
         <div class="flex-row">
             <p>
-                While imitation learning provides us with an efficient toolkit to train robots, learning skills that are robust to 
-                environment variations remains a significant challenge. Current approaches address this challenge by relying either
-                on large amounts of demonstrations that span environment variations or on handcrafted reward functions that require state estimates.
-                Both directions are not scalable to fast imitation. In this work, we present Fast Imitation of Skills from Humans (FISH), a
-                new imitation learning approach that can learn robust visual skills with less than a minute of human demonstrations. Given a
-                weak base-policy trained by offline imitation of demonstrations, FISH computes rewards that correspond to the “match” between
-                the robot’s behavior and the demonstrations. These rewards are then used to adaptively update a residual policy that adds
-                on to the base-policy. Across all tasks, FISH requires at most twenty minutes of interactive learning to imitate demonstrations
-                on object configurations that were not seen in the demonstrations. Importantly, FISH is constructed to be versatile, which allows it
-                to be used across robot morphologies (e.g. xArm, Allegro, Stretch) and camera configurations (e.g. third-person, eye-in-hand). Our
-                experimental evaluations on 9 different tasks show that FISH achieves an average success rate of 93%, which is around 3.8× higher 
-                than prior state-of-the-art methods.
+                Unified models capable of solving a wide variety of tasks have gained traction in vision 
+                and NLP due to their ability to share regularities and structures across tasks, which improves 
+                individual task performance and reduces computational footprint. However, the impact of such 
+                models remains limited in embodied learning problems, which present unique challenges due to 
+                interactivity, sample inefficiency, and sequential task presentation. In this work, we present 
+                PolyTask, a novel method for learning a single unified model that can solve various embodied 
+                tasks through a `learn then distill' mechanism. In the `learn' step, PolyTask leverages a few 
+                demonstrations for each task to train task-specific policies. Then, in the `distill' step, 
+                task-specific policies are distilled into a single policy using a new distillation method called 
+                Behavior Distillation. Given a unified policy, individual task behavior can be extracted through 
+                conditioning variables. PolyTask is designed to be conceptually simple while being able to leverage 
+                well-established algorithms in RL to enable interactivity, a handful of expert demonstrations to 
+                allow for sample efficiency, and preventing interactive access to tasks during distillation to 
+                enable lifelong learning. Experiments across three simulated environment suites and a real-robot 
+                suite show that PolyTask outperforms prior state-of-the-art approaches in multi-task and lifelong 
+                learning settings by significant margins.
             </p>
         </div>
     </section>
     <section id="method"/>
         <hr>
-        <h2>Fast Imitation of Skills from Humans (FISH)</h2>
+        <h2>PolyTask</h2>
 
             <br><br>
-            <div class="mx-auto">
-                <img class="card-img-top" src="./mfiles/gifs/main.gif" style="width:900">
-            </div>
+            <center>
+                <strong>Multi-task Learning</strong>
+                <div class="mx-auto">
+                        <img class="card-img-top" src="./mfiles/gifs/mtl.gif" style="width:800">
+                </div>
+            </center>
+
+            <br><br>
+            <center>
+                <strong>Lifelong Learning</strong>
+                <div class="mx-auto">
+                    <img class="card-img-top" src="./mfiles/gifs/ll.gif" style="width:800">
+                </div>
+            </center>
+
 <!-- 
             <div class="mx-auto">
                 <center><img class="card-img-top" src="mfiles/method.png" style="width:950px"></center>
@@ -536,32 +553,64 @@ pre {
         <hr>
         <h2>Method</h2>
             <br>
-            FISH operates in two phases. The first phase obtains a non-parametric base policy
-            through offline imitation from demonstrations. In the second phase, corrective residuals over 
-            this base policy are learned through inverse RL using optimal transport (OT) based trajectory-matching 
-            between the expert and agent behavior.
+            PolyTask operates in 2 phases - learn and distill. During the learn phase, a task-specific
+            policy is learned for each task using offline imitation from
+            a few expert demonstrations followed by online finetuning
+            using RL. During the distill phase, all task-specific policies are
+            combined into a unified policy using knowledge distillation
+            on the RL replay buffers stored for each task.
             <br><br>
 
             <div class="mx-auto">
-                <center><img class="card-img-top" src="mfiles/method.png" style="width:700px"></center>
+                <center><img class="card-img-top" src="mfiles/gifs/method.gif" style="width:800px"></center>
             </div>
             <br><br>
 
         <hr>
 
-
         <hr>
-        <h2>Robot Results</h2>
+        <h2>Simulation Results</h2>
             <br>
-            We evaluate FISH on 9 tasks of varying difficulty across 3 different robot morphologies - a robot hand, a robotic arm, and a mobile robot. We observe an average success rate of 93%, which is 3.8x higher than prior state-of-the-art methods in visual imitation and IRL.
+            We run experiments on a total of 32 tasks across 3 simulated environment suites - Deepmind Control suite, 
+            the Meta-world benchmark, and the Franka Kitchen environment.
+            <br><br>
             <div class="mx-auto">
-                <center><img class="card-img-top" src="mfiles/gifs/robot_results.gif" style="width:950px"></center>
+                <center><img class="card-img-top" src="mfiles/sim_envs.jpeg" style="width:600px"></center>
+            </div>
+
+            <h3>Multi-task Learning</h3>
+            <br>
+            <div class="mx-auto">
+                <center><img class="card-img-top" src="mfiles/sim_mtl.jpeg" style="width:950px"></center>
+            </div>
+
+            <h3>Lifelong Learning</h3>
+            <br>
+            <div class="mx-auto">
+                <center><img class="card-img-top" src="mfiles/sim_ll.png" style="width:800px"></center>
             </div>
 
         <br>
         <hr>
 
-        <h2>Generalization to New Object Configurations</h2>
+        <hr>
+        <h2>Robot Results</h2>
+            <br>
+            We devise a set of 6 manipulation tasks on a xArm robot to show the multi-task and lifelong 
+            learning capabilities of PolyTask in the real world.
+            <br><br>
+            <div class="mx-auto">
+                <center><img class="card-img-top" src="mfiles/gifs/real_results.gif" style="width:800px"></center>
+            </div>
+            <br>
+            <div class="mx-auto">
+                <center><img class="card-img-top" src="mfiles/real_results.png" style="width:800px"></center>
+            </div>
+
+        <br>
+        <hr>
+
+        <!-- <h2>Generalization to New Object Configurations</h2>
         <br>
         FISH exhibits generalization to new object positions and robot initializations unseen in the expert demonstrations. In the leftmost column, the region of operation for each task 
         is denoted by the blue box, &times on the images indicate positions where the demonstrations are collected, the green marks 
@@ -592,34 +641,6 @@ pre {
         We provide videos displaying the progression of learning during the residual learning phase in FISH.
         <br><br>
         
-        <!-- <div class="col-4-sm">
-            <video class="center" style="width: 25%;" controls loop>
-                <source src="./mfiles/video.m4v" type="video/mp4">
-            </video>
-            <video class="center" style="width: 25%;" controls loop>
-                <source src="./mfiles/video.m4v" type="video/mp4">
-            </video> -->
-            <!-- <img class="center" src="./mfiles/gifs/Flip Bagel.gif" style="width: 49.5%;">
-            <img class="center" src="./mfiles/gifs/Cube Flip.gif" style="width: 49.5%;"> -->
-          <!-- </div>
-          <div>
-            <img class="center" src="./mfiles/gifs/Bottle Spin.gif" style="width: 49.5%;">
-            <img class="center" src="./mfiles/gifs/Key Lock.gif" style="width: 49.5%;">
-          </div>
-          <div class="center">
-            <center><img class="center" src="./mfiles/gifs/Card Slide.gif" style="width: 49.5%;"></center>
-          </div>
-        </div> -->
-        
-        <!-- <div id="wrapper"> 
-            <video id="home1" width="400" height="300" poster="images/video.jpg" controls="controls" preload="none"> 
-                <source type="video/mp4" src="mfiles/video.m4v" /> 
-            </video>
-            <video id="home2" width="400" height="300" poster="images/video.jpg" controls="controls" preload="none"> 
-                <source type="video/mp4" src="mfiles/video.m4v" /> 
-            </video>
-            <div class="clear"></div> 
-        </div> -->
 
         <table width="100%">
             <tr>
@@ -649,24 +670,14 @@ pre {
             </td
             </tr>
         </table>
-        <!-- <center>
-        <table width="50%">
-            <tr>
-            <td align="left" valign="top" width="50%">
-                <video id="home1" width="500" height="300" poster="mfiles/videos/Card Slide.png" controls="controls" preload="none"> 
-                    <source type="video/mp4" src="mfiles/videos/Card Slide.m4v" /> 
-                </video>
-            </td>
-            </tr>
-        </table>
-        </center> -->
+
 
         <br><br>
-        <hr>
+        <hr> -->
 
     </section>
    
-    <section id="paper">
+    <!-- <section id="paper">
         <h2>Bibtex</h2>
         <div class="page-body"><pre id="ad6975be-3353-467d-ae48-6313d767ffa6" class="code"><code>
 @article{haldar2023teach,
@@ -678,7 +689,7 @@ pre {
         </code></pre><p id="1a3aa306-c4b8-4872-8fb0-411495c73d55" class="">
         </p></div>
 
-    </section>
+    </section> -->
 
     <section>
         This webpage template was recycled from <a href='https://nv-tlabs.github.io/LION/'>here</a>.
